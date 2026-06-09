@@ -1,0 +1,65 @@
+/**
+ * DevBrothers Simple Translator Admin Styles
+ *
+ * @package DevBrothers_Simple_Translator
+ *
+ * Стили только для специфичных элементов плагина.
+ * Общие стили (кнопки, формы) загружаются из базового плагина devbrothers-admin-panel.
+ */
+
+/* === Чекбоксы и радиокнопки === */
+
+.devbsitr-checkbox-label,
+.devbsitr-radio-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.devbsitr-radio-label {
+    margin-bottom: 12px;
+}
+
+/* === Код === */
+
+.devbsitr-code-inline {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #f6f7f7;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+}
+
+.devbsitr-code-block {
+    display: block;
+    padding: 12px;
+    background: #f6f7f7;
+    border-radius: 4px;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    margin-bottom: 10px;
+}
+
+/* === Списки параметров === */
+
+.devbsitr-params-list {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+/* === Заголовки секций === */
+
+.devbrothers-settings-category h4 {
+    margin: 15px 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* === Превью виджета === */
+
+.devbsitr-widget-preview {
+    padding: 20px;
+    background: #fff;
+    border: 2px dashed #c3c4c7;
+    border-radius: 8px;
+}

@@ -1,0 +1,314 @@
+/**
+ * DevBrothers Simple Translator Frontend Styles
+ *
+ * @package DevBrothers_Simple_Translator
+ */
+
+/* === Скрытие Google Translate toolbar и элементов === */
+
+.skiptranslate,
+.goog-te-banner-frame,
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+#google_translate_element {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-tooltip {
+    display: none !important;
+}
+
+.goog-tooltip:hover {
+    display: none !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* === Базовые стили виджета === */
+
+.devbsitr-widget {
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* === Dropdown === */
+
+.devbsitr-widget-dropdown .devbsitr-select {
+    padding: 8px 32px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 20px;
+}
+
+.devbsitr-widget-dropdown .devbsitr-select:hover {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+.devbsitr-widget-dropdown .devbsitr-select:focus {
+    outline: none;
+    border-color: #2271b1;
+    box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.2);
+}
+
+/* === Flags === */
+
+.devbsitr-widget-flags .devbsitr-flags {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.devbsitr-widget-flags .devbsitr-flag {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.devbsitr-widget-flags .devbsitr-flag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.devbsitr-widget-flags .devbsitr-flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* === Flags + Dropdown === */
+
+.devbsitr-widget-flags_dropdown .devbsitr-select-with-flags {
+    padding: 8px 32px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 180px;
+}
+
+.devbsitr-widget-flags_dropdown .devbsitr-select-with-flags:hover {
+    border-color: #2271b1;
+}
+
+.devbsitr-widget-flags_dropdown .devbsitr-select-with-flags:focus {
+    outline: none;
+    border-color: #2271b1;
+    box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.2);
+}
+
+/* === Text Links === */
+
+.devbsitr-widget-text_links .devbsitr-text-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.devbsitr-widget-text_links .devbsitr-text-links a {
+    color: #2271b1;
+    text-decoration: none;
+    transition: all 0.2s;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.devbsitr-widget-text_links .devbsitr-text-links a:hover {
+    background: rgba(34, 113, 177, 0.1);
+    color: #135e96;
+}
+
+.devbsitr-widget-text_links .devbsitr-separator {
+    color: #c3c4c7;
+}
+
+/* === Buttons === */
+
+.devbsitr-widget-buttons .devbsitr-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.devbsitr-widget-buttons .devbsitr-button {
+    padding: 8px 16px;
+    border: 1px solid #2271b1;
+    border-radius: 6px;
+    background: #fff;
+    color: #2271b1;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.devbsitr-widget-buttons .devbsitr-button:hover {
+    background: #2271b1;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(34, 113, 177, 0.3);
+}
+
+.devbsitr-widget-buttons .devbsitr-button:active {
+    transform: translateY(0);
+}
+
+/* === Floating виджет === */
+
+.devbsitr-floating {
+    position: fixed;
+    z-index: 99999;
+    padding: 15px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: devbsitr-slideIn 0.3s ease-out;
+    min-width: 200px;
+}
+
+.devbsitr-floating .devbsitr-widget-flags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.devbsitr-floating .devbsitr-flags {
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.devbsitr-floating .devbsitr-flag {
+    box-shadow: none !important;
+    margin: 0;
+}
+
+.devbsitr-floating .devbsitr-flag:hover {
+    box-shadow: none !important;
+    transform: scale(1.15);
+}
+
+.devbsitr-floating .devbsitr-flag img {
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes devbsitr-slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.devbsitr-floating-top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.devbsitr-floating-top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.devbsitr-floating-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.devbsitr-floating-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* === Адаптивность === */
+
+@media (max-width: 768px) {
+    .devbsitr-floating {
+        padding: 10px;
+    }
+
+    .devbsitr-floating-top-left,
+    .devbsitr-floating-bottom-left {
+        left: 10px;
+    }
+
+    .devbsitr-floating-top-right,
+    .devbsitr-floating-bottom-right {
+        right: 10px;
+    }
+
+    .devbsitr-floating-top-left,
+    .devbsitr-floating-top-right {
+        top: 10px;
+    }
+
+    .devbsitr-floating-bottom-left,
+    .devbsitr-floating-bottom-right {
+        bottom: 10px;
+    }
+
+    .devbsitr-widget-buttons .devbsitr-buttons {
+        flex-direction: column;
+    }
+
+    .devbsitr-widget-buttons .devbsitr-button {
+        width: 100%;
+    }
+}
+
+/* === Темная тема === */
+
+@media (prefers-color-scheme: dark) {
+    .devbsitr-floating {
+        background: #1e1e1e;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .devbsitr-widget-dropdown .devbsitr-select,
+    .devbsitr-widget-flags_dropdown .devbsitr-select-with-flags {
+        background: #2d2d2d;
+        color: #fff;
+        border-color: #444;
+    }
+
+    .devbsitr-widget-buttons .devbsitr-button {
+        background: #2d2d2d;
+        border-color: #2271b1;
+    }
+}
