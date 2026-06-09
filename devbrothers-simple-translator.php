@@ -3,7 +3,7 @@
  * Plugin Name: DevBrothers Simple Translator
  * Plugin URI: https://devbrothers.ru/plugins/simple-translator
  * Description: Simple and free language switcher based on Google Translate. Shortcodes, widgets, customizable styles.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: DevBrothers
  * Author URI: https://devbrothers.ru
  * License: GPL v2 or later
