@@ -45,26 +45,32 @@ class DEVBSITR_Settings {
         $sanitized = [];
 
         if (isset($input['default_language'])) {
-            $sanitized['default_language'] = sanitize_text_field($input['default_language']);
+            $sanitized['default_language'] = in_array($input['default_language'], ['ru', 'en'], true) ? $input['default_language'] : 'ru';
         }
 
         if (isset($input['languages']) && is_array($input['languages'])) {
-            $sanitized['languages'] = array_map('sanitize_text_field', $input['languages']);
+            $sanitized['languages'] = $this->filter_languages($input['languages']);
         }
 
         if (isset($input['widget_style'])) {
-            $sanitized['widget_style'] = sanitize_text_field($input['widget_style']);
+            $sanitized['widget_style'] = in_array($input['widget_style'], ['dropdown', 'flags', 'flags_dropdown', 'text_links', 'buttons'], true)
+                ? $input['widget_style'] : 'dropdown';
         }
 
         if (isset($input['enable_floating'])) {
-            $sanitized['enable_floating'] = (int) $input['enable_floating'];
+            $sanitized['enable_floating'] = !empty($input['enable_floating']);
         }
 
         if (isset($input['floating_position'])) {
-            $sanitized['floating_position'] = sanitize_text_field($input['floating_position']);
+            $sanitized['floating_position'] = in_array($input['floating_position'], ['top-left', 'top-right', 'bottom-left', 'bottom-right'], true)
+                ? $input['floating_position'] : 'bottom-right';
         }
 
         return $sanitized;
+    }
+
+    public function filter_languages(array $languages) {
+        return array_values(array_unique(array_intersect(array_filter($languages, 'is_string'), array_keys($this->available_languages))));
     }
 
     /**
@@ -84,7 +90,7 @@ class DEVBSITR_Settings {
         ];
 
         $settings              = get_option($this->option_name, $defaults);
-        $this->cached_settings = wp_parse_args($settings, $defaults);
+        $this->cached_settings = $this->sanitize_settings(wp_parse_args(is_array($settings) ? $settings : [], $defaults)) + $defaults;
 
         return $this->cached_settings;
     }
@@ -300,9 +306,9 @@ class DEVBSITR_Settings {
             ? sanitize_text_field(wp_unslash($_POST['devbsitr_default_language']))
             : 'ru';
         // phpcs:ignore WordPress.Security.NonceVerification.Missing
-        $languages = isset($_POST['devbsitr_languages'])
-            ? array_map('sanitize_text_field', wp_unslash($_POST['devbsitr_languages']))
-            : ['en'];
+        $languages = isset($_POST['devbsitr_languages']) && is_array($_POST['devbsitr_languages'])
+            ? wp_unslash($_POST['devbsitr_languages'])
+            : [];
         // phpcs:ignore WordPress.Security.NonceVerification.Missing
         $widget_style = isset($_POST['devbsitr_widget_style'])
             ? sanitize_text_field(wp_unslash($_POST['devbsitr_widget_style']))
@@ -322,6 +328,6 @@ class DEVBSITR_Settings {
             'floating_position' => $floating_position,
         ];
 
-        update_option($this->option_name, $settings);
+        update_option($this->option_name, $this->sanitize_settings($settings));
     }
 }

@@ -29,16 +29,7 @@ class DEVBSITR_Widget {
     ];
 
     private function get_settings() {
-        $defaults = [
-            'default_language'  => 'ru',
-            'languages'         => ['en', 'de', 'fr', 'es'],
-            'widget_style'      => 'dropdown',
-            'enable_floating'   => false,
-            'floating_position' => 'bottom-right',
-        ];
-
-        $settings = get_option('devbsitr_settings', $defaults);
-        return wp_parse_args($settings, $defaults);
+        return (new DEVBSITR_Settings())->get_settings();
     }
 
     /**
@@ -48,12 +39,15 @@ class DEVBSITR_Widget {
     public function render($args = []) {
         $settings = $this->get_settings();
 
-        if (!empty($args['style'])) {
+        if (in_array($args['style'] ?? '', ['dropdown', 'flags', 'flags_dropdown', 'text_links', 'buttons'], true)) {
             $settings['widget_style'] = $args['style'];
         }
 
-        if (!empty($args['languages'])) {
-            $settings['languages'] = array_map('trim', explode(',', $args['languages']));
+        if (!empty($args['languages']) && is_string($args['languages'])) {
+            $codes = array_map('trim', explode(',', $args['languages']));
+            $settings['languages'] = array_values(array_unique(array_filter($codes, function ($code) {
+                return isset($this->available_languages[$code]);
+            })));
         }
 
         ob_start();

@@ -3,7 +3,7 @@ Contributors: lzolotarev
 Tags: translate, translator, translation, language, multilingual
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires PHP: 7.4
 Requires Plugins: devbrothers-admin-panel
 License: GPLv2 or later
@@ -157,6 +157,10 @@ Yes, you can add your own CSS styles for the `.devbsitr-widget` class.
 
 == Changelog ==
 
+= 1.0.3 =
+* Validate language codes, widget styles and positions before output.
+* Clear only Google's translation cookie when returning to the original language.
+
 = 1.0.2 =
 * Re-release with corrected SVN tag format
 * No code changes from 1.0.1
@@ -164,7 +168,6 @@ Yes, you can add your own CSS styles for the `.devbsitr-widget` class.
 = 1.0.1 =
 * Updated code for WordPress 7.0 compatibility
 * Security and performance improvements
-
 
 = 1.0.0 =
 * Initial release

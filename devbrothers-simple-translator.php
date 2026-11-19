@@ -3,7 +3,7 @@
  * Plugin Name: DevBrothers Simple Translator
  * Plugin URI: https://devbrothers.ru/plugins/simple-translator
  * Description: Simple and free language switcher based on Google Translate. Shortcodes, widgets, customizable styles.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: DevBrothers
  * Author URI: https://devbrothers.ru
  * License: GPL v2 or later
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('DEVBSITR_VERSION', '1.0.2');
+define('DEVBSITR_VERSION', '1.0.3');
 define('DEVBSITR_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('DEVBSITR_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('DEVBSITR_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -175,8 +175,8 @@ class DEVBSITR_Plugin {
 
         $gt_init = sprintf(
             "function googleTranslateElementInit(){if(typeof google!=='undefined'&&google.translate&&google.translate.TranslateElement){new google.translate.TranslateElement({pageLanguage:%s,includedLanguages:%s},'google_translate_element');}}",
-            wp_json_encode($settings['default_language']),
-            wp_json_encode(implode(',', $settings['languages']))
+            wp_json_encode($settings['default_language'], JSON_HEX_TAG),
+            wp_json_encode(implode(',', $settings['languages']), JSON_HEX_TAG)
         );
 
         wp_add_inline_script('google-translate-element', $gt_init, 'before');
@@ -263,7 +263,7 @@ class DEVBSITR_Plugin {
                 var cookies = document.cookie.split(';');
                 for (var i = 0; i < cookies.length; i++) {
                     var cookie = cookies[i].trim();
-                    if (cookie.indexOf('googtrans') === 0) {
+                    if (cookie.indexOf('googtrans=') === 0) {
                         var cookieName = cookie.split('=')[0];
                         document.cookie = cookieName + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                         document.cookie = cookieName + '=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
